@@ -72,6 +72,7 @@ export function Post({ author, content, publishedAt }: Props) {
       <form onSubmit={handleSubmit} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
+       {/* @TODO ajustar o erro do onInvalid */}
         <textarea
           placeholder='deixe um comentário'
           onChange={handleNewCommentChange}
@@ -88,7 +89,7 @@ export function Post({ author, content, publishedAt }: Props) {
       <div className={styles.commentList}>
        {comments.map((comment) => {
           return <Comment key={comment} content={comment} onDeleteComment={deleteComment} />
-       })} 
+       })}
       </div>
     </article>
   )
