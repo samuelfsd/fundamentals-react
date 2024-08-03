@@ -1,25 +1,25 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
 import styles from './styles.module.css'
 
-import { Avatar } from '../Avatar';
-import { Comment } from '../Comment';
+import { Avatar } from '../Avatar'
+import { Comment } from '../Comment'
 
 interface Author {
-  avatarUrl: string;
-  name: string;
+  avatarUrl: string
+  name: string
   role: string
 }
 
 interface Content {
-  type: string;
-  content: string;
+  type: string
+  content: string
 }
 
 interface Props {
-  author: Author;
-  content: Content[];
-  publishedAt: Date;
+  author: Author
+  content: Content[]
+  publishedAt: Date
 }
 
 export function Post({ author, content, publishedAt }: Props) {
@@ -29,7 +29,7 @@ export function Post({ author, content, publishedAt }: Props) {
   function handleSubmit() {
     event.preventDefault()
 
-    setComments([...comments , newCommentText ])
+    setComments([...comments, newCommentText])
     setNewCommentText('')
   }
 
@@ -37,8 +37,8 @@ export function Post({ author, content, publishedAt }: Props) {
     setNewCommentText(event.target.value)
   }
 
-  function deleteComment(comment: string ) {
-    const filteredComments = comments.filter(item => {
+  function deleteComment(comment: string) {
+    const filteredComments = comments.filter((item) => {
       return item !== comment
     })
 
@@ -57,39 +57,49 @@ export function Post({ author, content, publishedAt }: Props) {
           </div>
         </div>
 
-        <time >{publishedAt.toString()}</time>
+        <time>{publishedAt.toString()}</time>
       </header>
 
       <div className={styles.content}>
-       {content.map((line) => {
+        {content.map((line) => {
           if (line.type === 'paragraph') {
             return <p key={line.content}>{line.content}</p>
           }
-          return <p key={line.content}><a href="">{line.content}</a></p>
-       })}
+          return (
+            <p key={line.content}>
+              <a href="">{line.content}</a>
+            </p>
+          )
+        })}
       </div>
 
       <form onSubmit={handleSubmit} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
-       {/* @TODO ajustar o erro do onInvalid */}
+        {/* @TODO ajustar o erro do onInvalid */}
         <textarea
-          placeholder='deixe um comentário'
+          placeholder="deixe um comentário"
           onChange={handleNewCommentChange}
           value={newCommentText}
           required
-          onInvalid='preencha esse campo por favor'
+          onInvalid="preencha esse campo por favor"
         />
 
         <footer>
-          <button type='submit'>Publicar</button>
+          <button type="submit">Publicar</button>
         </footer>
       </form>
 
       <div className={styles.commentList}>
-       {comments.map((comment) => {
-          return <Comment key={comment} content={comment} onDeleteComment={deleteComment} />
-       })}
+        {comments.map((comment) => {
+          return (
+            <Comment
+              key={comment}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          )
+        })}
       </div>
     </article>
   )

@@ -5,8 +5,8 @@ import { ThumbsUp, Trash } from '@phosphor-icons/react'
 import { Avatar } from '../Avatar'
 
 interface Props {
-  content: string,
-  onDeleteComment: (content: string) => void;
+  content: string
+  onDeleteComment: (content: string) => void
 }
 
 export function Comment({ content, onDeleteComment }: Props) {
@@ -22,7 +22,10 @@ export function Comment({ content, onDeleteComment }: Props) {
               <time>Cerca de 1h atrás</time>
             </div>
 
-            <button title="Deletar comentário" onClick={() => onDeleteComment(content)}>
+            <button
+              title="Deletar comentário"
+              onClick={() => onDeleteComment(content)}
+            >
               <Trash size={24} />
             </button>
           </header>
