@@ -95,7 +95,6 @@ export function Post({ author, content, publishedAt }: Props) {
       <form onSubmit={handleSubmit} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
-        {/* @TODO ajustar o erro do onInvalid */}
         <textarea
           placeholder="deixe um comentário"
           onChange={handleNewCommentChange}
