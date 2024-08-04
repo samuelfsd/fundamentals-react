@@ -46,7 +46,12 @@ export function Post({ author, content, publishedAt }: Props) {
   })
 
   function handleNewCommentChange() {
+    event.target.setCustomValidity('')
     setNewCommentText(event.target.value)
+  }
+
+  function handleNewCommentInvalid() {
+    event.target.setCustomValidity('Este campo é obrigatório.')
   }
 
   function deleteComment(comment: string) {
@@ -56,6 +61,8 @@ export function Post({ author, content, publishedAt }: Props) {
 
     setComments(filteredComments)
   }
+
+  const isNewCommentEmpty = newCommentText.length === 0
 
   return (
     <article className={styles.post}>
@@ -94,11 +101,11 @@ export function Post({ author, content, publishedAt }: Props) {
           onChange={handleNewCommentChange}
           value={newCommentText}
           required
-          onInvalid="preencha esse campo por favor"
+          onInvalid={handleNewCommentInvalid}
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button disabled={isNewCommentEmpty} type="submit">Publicar</button>
         </footer>
       </form>
 
