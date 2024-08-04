@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+import { format, formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale/pt-BR'
+
 import styles from './styles.module.css'
 
 import { Avatar } from '../Avatar'
@@ -33,6 +36,15 @@ export function Post({ author, content, publishedAt }: Props) {
     setNewCommentText('')
   }
 
+  const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    locale: ptBR,
+  })
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true
+  })
+
   function handleNewCommentChange() {
     setNewCommentText(event.target.value)
   }
@@ -57,7 +69,7 @@ export function Post({ author, content, publishedAt }: Props) {
           </div>
         </div>
 
-        <time>{publishedAt.toString()}</time>
+        <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>{publishedDateRelativeToNow}</time>
       </header>
 
       <div className={styles.content}>
