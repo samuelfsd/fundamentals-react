@@ -6,12 +6,12 @@ import { ThumbsUp, Trash } from '@phosphor-icons/react'
 
 import { Avatar } from '../Avatar'
 
-interface Props {
+interface CommentProps {
   content: string
   onDeleteComment: (content: string) => void
 }
 
-export function Comment({ content, onDeleteComment }: Props) {
+export function Comment({ content, onDeleteComment }: CommentProps) {
   const [likeCount, setLikeCount] = useState(0)
 
   function handleDeleteComment() {
