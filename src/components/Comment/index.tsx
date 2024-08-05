@@ -19,7 +19,8 @@ export function Comment({ content, onDeleteComment }: Props) {
   }
 
   function handleLikeComment() {
-    setLikeCount(likeCount + 1)
+    // sempre que precisar atualizar uma info, e essa info depende do valor anterior usar essa forma
+    setLikeCount((prev) => prev + 1)
   }
 
   return (
